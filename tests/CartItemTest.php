@@ -63,4 +63,18 @@ class CartItemTest extends TestCase
 
         $this->assertSame('20.00', $cartItem->priceTotal());
     }
+
+    /** @test */
+    public function it_rounds_total_weight_to_three_decimals_if_setting_set(): void
+    {
+
+        $cartItem = new CartItem(1, 'Some item', 10.123, 550.123, ['size' => 'XL', 'color' => 'red']);
+        $cartItem->setQuantity(2);
+
+        $this->assertSame(20.25, $cartItem->total);
+        $this->assertSame(1100.25, $cartItem->weightTotal);
+
+        $this->app['config']->set('cart.format.decimals_weight', 3);
+        $this->assertSame(1100.246, $cartItem->weightTotal);
+    }
 }

@@ -70,6 +70,8 @@ return [
 
         'decimals' => 2,
 
+        'decimals_weight' => 2,
+
         'decimal_point' => '.',
 
         'thousand_separator' => ',',

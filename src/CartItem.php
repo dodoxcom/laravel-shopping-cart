@@ -22,6 +22,7 @@ use ReflectionClass;
  * @property-read float tax
  * @property-read float total
  * @property-read float priceTax
+ * @property-read float weightTotal
  */
 class CartItem implements Arrayable, Jsonable
 {
@@ -387,6 +388,7 @@ class CartItem implements Arrayable, Jsonable
             return $this->{$attribute};
         }
         $decimals = config('cart.format.decimals', 2);
+        $decimalsForWeight = config('cart.format.decimals_weight', 2);
 
         switch ($attribute) {
             case 'model':
@@ -400,7 +402,7 @@ class CartItem implements Arrayable, Jsonable
                 }
                 // no break
             case 'weightTotal':
-                return round($this->weight * $this->qty, $decimals);
+                return round($this->weight * $this->qty, $decimalsForWeight);
         }
 
         $class = new ReflectionClass(config('cart.calculator', DefaultCalculator::class));
