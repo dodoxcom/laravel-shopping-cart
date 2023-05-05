@@ -50,6 +50,7 @@
     }
   },
   "scripts": {
+    "test": "@php ./vendor/bin/phpunit",
     "cs": "@php ./vendor/bin/pint -v --test",
     "cs-fix": "@php ./vendor/bin/pint"
   },
