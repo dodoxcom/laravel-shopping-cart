@@ -2,11 +2,20 @@
 
 namespace Gloudemans\Tests\Shoppingcart\Fixtures;
 
-class ProductModel
+use Gloudemans\Shoppingcart\Contracts\Buyable;
+
+class ProductModel implements Buyable
 {
+    use \Gloudemans\Shoppingcart\CanBeBought;
+
     public $someValue = 'Some value';
 
-    public function find($id)
+    public function newQuery()
+    {
+        return $this;
+    }
+
+    public function firstWhere($field, $value)
     {
         return $this;
     }

@@ -4,6 +4,11 @@ namespace Gloudemans\Shoppingcart;
 
 trait CanBeBought
 {
+    public function getBuyableIdentifierKeyName(): string
+    {
+        return method_exists($this, 'getKeyName') ? $this->getKeyName() : 'id';
+    }
+
     /**
      * Get the identifier of the Buyable item.
      *

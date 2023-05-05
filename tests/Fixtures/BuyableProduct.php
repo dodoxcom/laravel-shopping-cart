@@ -28,6 +28,11 @@ class BuyableProduct extends Model implements Buyable
         'weight' => 0,
     ];
 
+    public function getBuyableIdentifierKeyName(): string
+    {
+        return 'id';
+    }
+
     /**
      * Get the identifier of the Buyable item.
      *

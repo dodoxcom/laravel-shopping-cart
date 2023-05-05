@@ -8,6 +8,7 @@ use Gloudemans\Shoppingcart\Contracts\Calculator;
 use Gloudemans\Shoppingcart\Exceptions\InvalidCalculatorException;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Contracts\Support\Jsonable;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use ReflectionClass;
 
@@ -23,6 +24,7 @@ use ReflectionClass;
  * @property-read float total
  * @property-read float priceTax
  * @property-read float weightTotal
+ * @property-read Buyable|Model|null model
  */
 class CartItem implements Arrayable, Jsonable
 {
@@ -393,7 +395,10 @@ class CartItem implements Arrayable, Jsonable
         switch ($attribute) {
             case 'model':
                 if (isset($this->associatedModel)) {
-                    return with(new $this->associatedModel())->find($this->id);
+                    /** @var Buyable|Model $model */
+                    $model = new $this->associatedModel();
+
+                    return $model->newQuery()->firstWhere($model->getBuyableIdentifierKeyName(), $this->id);
                 }
                 // no break
             case 'modelFQCN':
