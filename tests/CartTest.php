@@ -336,6 +336,20 @@ class CartTest extends TestCase
     }
 
     /** @test */
+    public function it_has_all_buyable_contract_methods(): void
+    {
+        $cartItem = new BuyableProductTrait([
+            'weight' => 5.123,
+        ]);
+
+        $this->assertSame('id', $cartItem->getBuyableIdentifierKeyName());
+        $this->assertSame(1, $cartItem->getBuyableIdentifier());
+        $this->assertSame('Item name', $cartItem->getBuyableDescription());
+        $this->assertSame(10.00, $cartItem->getBuyablePrice());
+        $this->assertSame(5.123, $cartItem->getBuyableWeight());
+    }
+
+    /** @test */
     public function it_can_update_an_existing_item_in_the_cart_from_a_buyable()
     {
         Event::fake();

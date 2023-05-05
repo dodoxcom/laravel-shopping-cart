@@ -5,6 +5,11 @@ namespace Gloudemans\Shoppingcart\Contracts;
 interface Buyable
 {
     /**
+     * Get the identifier DB column of the Buyable item.
+     */
+    public function getBuyableIdentifierKeyName(): string;
+
+    /**
      * Get the identifier of the Buyable item.
      *
      * @return int|string
