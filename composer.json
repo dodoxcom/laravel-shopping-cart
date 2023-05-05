@@ -54,9 +54,6 @@
     "cs": "@php ./vendor/bin/pint -v --test",
     "cs-fix": "@php ./vendor/bin/pint"
   },
-  "suggest": {
-    "gloudemans/notify": "Simple flash notifications for Laravel"
-  },
   "minimum-stability": "stable",
   "extra": {
     "laravel": {
