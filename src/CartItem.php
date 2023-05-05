@@ -10,7 +10,6 @@ use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Contracts\Support\Jsonable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
-use ReflectionClass;
 
 /**
  * @property-read mixed discount
@@ -24,6 +23,7 @@ use ReflectionClass;
  * @property-read float total
  * @property-read float priceTax
  * @property-read float weightTotal
+ * @property-read string modelFQCN
  * @property-read Buyable|Model|null model
  */
 class CartItem implements Arrayable, Jsonable
@@ -410,12 +410,13 @@ class CartItem implements Arrayable, Jsonable
                 return round($this->weight * $this->qty, $decimalsForWeight);
         }
 
-        $class = new ReflectionClass(config('cart.calculator', DefaultCalculator::class));
-        if (! $class->implementsInterface(Calculator::class)) {
+        $calculatorClassName = config('cart.calculator', DefaultCalculator::class);
+        $class = new $calculatorClassName;
+        if (! $class instanceof Calculator) {
             throw new InvalidCalculatorException('The configured Calculator seems to be invalid. Calculators have to implement the Calculator Contract.');
         }
 
-        return call_user_func($class->getName().'::getAttribute', $attribute, $this);
+        return $class::getAttribute($attribute, $this);
     }
 
     /**
