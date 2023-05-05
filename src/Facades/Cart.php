@@ -4,7 +4,6 @@ namespace Gloudemans\Shoppingcart\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
-
 /**
  * @method static \Gloudemans\Shoppingcart\Cart instance(?string $instance)
  * @method static string currentInstance()

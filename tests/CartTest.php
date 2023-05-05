@@ -25,8 +25,7 @@ class CartTest extends TestCase
     /**
      * Set the package service provider.
      *
-     * @param \Illuminate\Foundation\Application $app
-     *
+     * @param  \Illuminate\Foundation\Application  $app
      * @return array
      */
     protected function getPackageProviders($app)
@@ -37,8 +36,7 @@ class CartTest extends TestCase
     /**
      * Define environment setup.
      *
-     * @param \Illuminate\Foundation\Application $app
-     *
+     * @param  \Illuminate\Foundation\Application  $app
      * @return void
      */
     protected function getEnvironmentSetUp($app)
@@ -49,16 +47,14 @@ class CartTest extends TestCase
 
         $app['config']->set('database.default', 'testing');
         $app['config']->set('database.connections.testing', [
-            'driver'   => 'sqlite',
+            'driver' => 'sqlite',
             'database' => ':memory:',
-            'prefix'   => '',
+            'prefix' => '',
         ]);
     }
 
     /**
      * Setup the test environment.
-     *
-     * @return void
      */
     protected function setUp(): void
     {
@@ -83,12 +79,12 @@ class CartTest extends TestCase
         $cart = $this->getCart();
 
         $cart->add(new BuyableProduct([
-            'id'   => 1,
+            'id' => 1,
             'name' => 'First item',
         ]));
 
         $cart->instance('wishlist')->add(new BuyableProduct([
-            'id'   => 2,
+            'id' => 2,
             'name' => 'Second item',
         ]));
 
@@ -351,7 +347,7 @@ class CartTest extends TestCase
         ]));
 
         $cart->update('027c91341fd5cf4d2579b49c4b6a90da', new BuyableProductTrait([
-            'name'        => '',
+            'name' => '',
             'description' => 'Different description',
         ]));
 
@@ -544,28 +540,28 @@ class CartTest extends TestCase
         $this->assertInstanceOf(Collection::class, $content);
         $this->assertEquals([
             '027c91341fd5cf4d2579b49c4b6a90da' => [
-                'rowId'    => '027c91341fd5cf4d2579b49c4b6a90da',
-                'id'       => 1,
-                'name'     => 'Item name',
-                'qty'      => 1,
-                'price'    => 10.00,
-                'tax'      => 2.10,
+                'rowId' => '027c91341fd5cf4d2579b49c4b6a90da',
+                'id' => 1,
+                'name' => 'Item name',
+                'qty' => 1,
+                'price' => 10.00,
+                'tax' => 2.10,
                 'subtotal' => 10.0,
-                'options'  => [],
+                'options' => [],
                 'discount' => 0.0,
-                'weight'   => 0.0,
+                'weight' => 0.0,
             ],
             '370d08585360f5c568b18d1f2e4ca1df' => [
-                'rowId'    => '370d08585360f5c568b18d1f2e4ca1df',
-                'id'       => 2,
-                'name'     => 'Item name',
-                'qty'      => 1,
-                'price'    => 10.00,
-                'tax'      => 2.10,
+                'rowId' => '370d08585360f5c568b18d1f2e4ca1df',
+                'id' => 2,
+                'name' => 'Item name',
+                'qty' => 1,
+                'price' => 10.00,
+                'tax' => 2.10,
                 'subtotal' => 10.0,
-                'options'  => [],
+                'options' => [],
                 'discount' => 0.0,
-                'weight'   => 0.0,
+                'weight' => 0.0,
             ],
         ], $content->toArray());
     }
@@ -593,8 +589,8 @@ class CartTest extends TestCase
             'name' => 'First item',
         ]));
         $cart->add(new BuyableProduct([
-            'id'    => 2,
-            'name'  => 'Second item',
+            'id' => 2,
+            'name' => 'Second item',
             'price' => 25.00,
         ]), 2);
 
@@ -608,12 +604,12 @@ class CartTest extends TestCase
         $cart = $this->getCart();
 
         $cart->add(new BuyableProduct([
-            'name'  => 'First item',
+            'name' => 'First item',
             'price' => 1000.00,
         ]));
         $cart->add(new BuyableProduct([
-            'id'    => 2,
-            'name'  => 'Second item',
+            'id' => 2,
+            'name' => 'Second item',
             'price' => 2500.00,
         ]), 2);
 
@@ -630,7 +626,7 @@ class CartTest extends TestCase
             'name' => 'Some item',
         ]));
         $cart->add(new BuyableProduct([
-            'id'   => 2,
+            'id' => 2,
             'name' => 'Another item',
         ]));
 
@@ -653,11 +649,11 @@ class CartTest extends TestCase
             'name' => 'Some item',
         ]));
         $cart->add(new BuyableProduct([
-            'id'   => 2,
+            'id' => 2,
             'name' => 'Some item',
         ]));
         $cart->add(new BuyableProduct([
-            'id'   => 3,
+            'id' => 3,
             'name' => 'Another item',
         ]));
 
@@ -677,7 +673,7 @@ class CartTest extends TestCase
             'name' => 'Some item',
         ]), 1, ['color' => 'red']);
         $cart->add(new BuyableProduct([
-            'id'   => 2,
+            'id' => 2,
             'name' => 'Another item',
         ]), 1, ['color' => 'blue']);
 
@@ -753,7 +749,7 @@ class CartTest extends TestCase
         $cart = $this->getCart();
 
         $cart->add(new BuyableProduct([
-            'name'  => 'Some title',
+            'name' => 'Some title',
             'price' => 9.99,
         ]), 3);
 
@@ -768,7 +764,7 @@ class CartTest extends TestCase
         $cart = $this->getCart();
 
         $cart->add(new BuyableProduct([
-            'name'  => 'Some title',
+            'name' => 'Some title',
             'price' => 500,
         ]), 3);
 
@@ -813,7 +809,7 @@ class CartTest extends TestCase
         $cart = $this->getCart();
 
         $cart->add(new BuyableProduct([
-            'name'  => 'Some title',
+            'name' => 'Some title',
             'price' => 10000.00,
         ]), 1);
 
@@ -831,8 +827,8 @@ class CartTest extends TestCase
             'name' => 'Some title',
         ]), 1);
         $cart->add(new BuyableProduct([
-            'id'    => 2,
-            'name'  => 'Some title',
+            'id' => 2,
+            'name' => 'Some title',
             'price' => 20.00,
         ]), 2);
 
@@ -845,12 +841,12 @@ class CartTest extends TestCase
         $cart = $this->getCart();
 
         $cart->add(new BuyableProduct([
-            'name'  => 'Some title',
+            'name' => 'Some title',
             'price' => 1000.00,
         ]), 1);
         $cart->add(new BuyableProduct([
-            'id'    => 2,
-            'name'  => 'Some title',
+            'id' => 2,
+            'name' => 'Some title',
             'price' => 2000.00,
         ]), 2);
 
@@ -880,7 +876,7 @@ class CartTest extends TestCase
 
         $cart->add(new BuyableProduct(), 1);
         $cart->add(new BuyableProduct([
-            'id'    => 2,
+            'id' => 2,
             'price' => 20.00,
         ]), 2);
 
@@ -896,7 +892,7 @@ class CartTest extends TestCase
             'price' => 1000.00,
         ]), 1);
         $cart->add(new BuyableProduct([
-            'id'    => 2,
+            'id' => 2,
             'price' => 2000.00,
         ]), 2);
 
@@ -914,7 +910,7 @@ class CartTest extends TestCase
             'price' => 1000.00,
         ]), 1);
         $cart->add(new BuyableProduct([
-            'id'    => 2,
+            'id' => 2,
             'price' => 2000.00,
         ]), 2);
 
@@ -1142,7 +1138,7 @@ class CartTest extends TestCase
     {
         $cart = $this->getCartDiscount(50);
         $cart->add(new BuyableProduct([
-            'name'  => 'First item',
+            'name' => 'First item',
             'price' => 5.00,
         ]), 2);
 
@@ -1218,7 +1214,7 @@ class CartTest extends TestCase
         $cart = $this->getCart();
 
         $cart->add(new BuyableProduct([
-            'name'  => 'Item',
+            'name' => 'Item',
             'price' => 10.004,
         ]), 2);
 
@@ -1241,7 +1237,7 @@ class CartTest extends TestCase
             'name' => 'Item',
         ]), 1);
         $cart->add(new BuyableProduct([
-            'id'   => 2,
+            'id' => 2,
             'name' => 'Item 2',
         ]), 1);
         $cart->store('test');
@@ -1280,7 +1276,7 @@ class CartTest extends TestCase
             'name' => 'Item',
         ]), 1);
         $cart->add(new BuyableProduct([
-            'id'   => 2,
+            'id' => 2,
             'name' => 'Item 2',
         ]), 1);
         $this->assertEquals(false, $cart->merge('doesNotExist'));
@@ -1348,7 +1344,7 @@ class CartTest extends TestCase
     {
         $cart = $this->getCart();
         $cart->add(new BuyableProduct([
-            'name'   => 'First item',
+            'name' => 'First item',
             'weight' => 250,
         ]), 2);
         $cartItem = $cart->get('027c91341fd5cf4d2579b49c4b6a90da');
@@ -1375,7 +1371,7 @@ class CartTest extends TestCase
         $this->assertEquals('User1', $cart->currentInstance());
 
         $cart->add(new BuyableProduct([
-            'name'   => 'First item',
+            'name' => 'First item',
             'weight' => 250,
         ]), 2);
         $this->assertItemsInCart(2, $cart);
@@ -1457,7 +1453,7 @@ class CartTest extends TestCase
             'name' => 'Item',
         ]), 1);
         $cart->add(new BuyableProduct([
-            'id'   => 2,
+            'id' => 2,
             'name' => 'Item 2',
         ]), 1);
         $cart->store('test');
@@ -1492,7 +1488,7 @@ class CartTest extends TestCase
             'name' => 'Item',
         ]), 1);
         $cart->add(new BuyableProduct([
-            'id'   => 2,
+            'id' => 2,
             'name' => 'Item 2',
         ]), 1);
         $cart->store('test');
@@ -1524,17 +1520,17 @@ class CartTest extends TestCase
         $cart = $this->getCartDiscount(6);
 
         $cartItem = $cart->add(new BuyableProduct([
-            'name'  => 'First item',
+            'name' => 'First item',
             'price' => 0.18929,
         ]), 1000);
         $cart->add(new BuyableProduct([
-            'id'    => 2,
-            'name'  => 'Second item',
+            'id' => 2,
+            'name' => 'Second item',
             'price' => 4.41632,
         ]), 5);
         $cart->add(new BuyableProduct([
-            'id'    => 3,
-            'name'  => 'Third item',
+            'id' => 3,
+            'name' => 'Third item',
             'price' => 0.37995,
         ]), 25);
 
@@ -1557,7 +1553,7 @@ class CartTest extends TestCase
         config(['cart.calculator' => GrossPrice::class]);
 
         $cartItem = $cart->add(new BuyableProduct([
-            'name'  => 'First item',
+            'name' => 'First item',
             'price' => 100,
         ]), 2);
 
@@ -1576,17 +1572,17 @@ class CartTest extends TestCase
         $cart = $this->getCartDiscount(6);
 
         $cartItem = $cart->add(new BuyableProduct([
-            'name'  => 'First item',
+            'name' => 'First item',
             'price' => 0.23093,
         ]), 1000);
         $cart->add(new BuyableProduct([
-            'id'    => 2,
-            'name'  => 'Second item',
+            'id' => 2,
+            'name' => 'Second item',
             'price' => 5.38791,
         ]), 5);
         $cart->add(new BuyableProduct([
-            'id'    => 3,
-            'name'  => 'Third item',
+            'id' => 3,
+            'name' => 'Third item',
             'price' => 0.46354,
         ]), 25);
 
@@ -1617,8 +1613,7 @@ class CartTest extends TestCase
     /**
      * Get an instance of the cart with discount.
      *
-     * @param int $discount
-     *
+     * @param  int  $discount
      * @return \Gloudemans\Shoppingcart\Cart
      */
     private function getCartDiscount($discount = 50)
@@ -1632,9 +1627,9 @@ class CartTest extends TestCase
     /**
      * Set the config number format.
      *
-     * @param int    $decimals
-     * @param string $decimalPoint
-     * @param string $thousandSeperator
+     * @param  int  $decimals
+     * @param  string  $decimalPoint
+     * @param  string  $thousandSeperator
      */
     private function setConfigFormat($decimals, $decimalPoint, $thousandSeperator)
     {
@@ -1690,7 +1685,7 @@ class CartTest extends TestCase
         $cart = $this->getCart();
 
         $cart->add(new BuyableProduct([
-            'name'  => 'first item',
+            'name' => 'first item',
             'price' => 1000,
         ]), $qty = 5);
         $this->assertEquals(5000, $cart->priceTotalFloat());
@@ -1702,7 +1697,7 @@ class CartTest extends TestCase
         $cart = $this->getCart();
 
         $cart->add(new BuyableProduct([
-            'name'  => 'first item',
+            'name' => 'first item',
             'price' => 1000,
         ]), 5);
         $this->assertEquals('5,000.00', $cart->priceTotal());
@@ -1723,7 +1718,7 @@ class CartTest extends TestCase
             'name' => 'Item',
         ]), 1);
         $cart->add(new BuyableProduct([
-            'id'   => 2,
+            'id' => 2,
             'name' => 'Item 2',
         ]), 1);
         $cart->store($identifier = 'test');
